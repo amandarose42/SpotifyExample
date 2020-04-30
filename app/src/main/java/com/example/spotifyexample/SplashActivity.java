@@ -23,11 +23,11 @@ public class SplashActivity extends AppCompatActivity {
     private SharedPreferences msharedPreferences;
 
     private RequestQueue queue;
-
+    protected static User user;
     private static final String CLIENT_ID =  "c51c441a5bf749a4bf9a1a9b7987173a";
     private static final String REDIRECT_URI ="http://qr.example.com";
     private static final int REQUEST_CODE = 1337;
-    private static final String SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private";
+    private static final String SCOPES[] = {"user-read-recently-played","user-library-modify","user-read-email","user-read-private"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class SplashActivity extends AppCompatActivity {
         //These are different permissions we need to request from the user, for
         //example, the permission to read his personal information. The
         //requested scopes will be displayed to the user and he has to grant them to your application.
-        builder.setScopes(new String[]{SCOPES});
+        builder.setScopes(SCOPES);
         //Finally, we send the request. This will open Spotify (if it’s installed) or
         //fall back to a WebView where the user has to log in. The
         //REQUEST_CODE is just a static number (e.g. 1337) to identify the application we just started.
@@ -72,15 +72,17 @@ public class SplashActivity extends AppCompatActivity {
             switch (response.getType()) {
                 // Response was successful and contains auth token
                 case TOKEN:
+                    Log.d("here", "success");
                     editor = getSharedPreferences("SPOTIFY", 0).edit();
                     editor.putString("token", response.getAccessToken());
                     Log.d("STARTING", "GOT AUTH TOKEN");
                     editor.apply();
-                    //waitForUserInfo();
+                    waitForUserInfo();
                     break;
 
                 // Auth flow returned an error
                 case ERROR:
+                    Log.d("here", "failure");
                     // Handle error response
                     break;
 
@@ -94,7 +96,7 @@ public class SplashActivity extends AppCompatActivity {
     private void waitForUserInfo() {
         UserService userService = new UserService(queue, msharedPreferences);
         userService.get(() -> {
-            User user = userService.getUser();
+            user = userService.getUser();
             editor = getSharedPreferences("SPOTIFY", 0).edit();
             editor.putString("userid", user.id);
             Log.d("STARTING", "GOT USER INFORMATION");

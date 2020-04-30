@@ -11,18 +11,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name="com.spotify.sdk.android.authentication.LoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <activity android:name=".MainActivity" />
 
-        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".SplashActivity">
 
+            <intent-filter>
+            <action android:name="android.intent.action.VIEW"/>
 
-        <activity android:name=".MainActivity">
+            <category android:name="android.intent.category.DEFAULT"/>
+            <category android:name="android.intent.category.BROWSABLE"/>
+
+            <data
+                android:host="qr.example.com"
+                android:scheme="http"/>
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

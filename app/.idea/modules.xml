@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../SpotifyExample.iml" filepath="$PROJECT_DIR$/../SpotifyExample.iml" group="SpotifyExample" />
+      <module fileurl="file://$PROJECT_DIR$/SpotifyExample-app.iml" filepath="$PROJECT_DIR$/SpotifyExample-app.iml" group="SpotifyExample/app" />
       <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" group="SpotifyExample/app" />
+      <module fileurl="file://$PROJECT_DIR$/../sylvestre-SpotifyExample.iml" filepath="$PROJECT_DIR$/../sylvestre-SpotifyExample.iml" group="SpotifyExample" />
     </modules>
   </component>
 </project>

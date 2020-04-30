@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         addBtn = (Button) findViewById(R.id.add);
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("SPOTIFY", 0);
-        userView.setText(sharedPreferences.getString("userid", "No User"));
+        userView.setText(sharedPreferences.getString(SplashActivity.user.id,"There's no user."));
 
         getTracks();
 
